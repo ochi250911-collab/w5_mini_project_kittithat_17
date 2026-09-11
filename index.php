@@ -42,7 +42,7 @@ ini_set('display_startup_errors', 1);
 
                 <Thead>
                     <th>ID</th>
-                    
+                    <th>รูป</th>
                     <th>ชื่อ</th>
                     <th>โลกของพืช</th>
                     <th>อาหารเสริม</th>
@@ -50,18 +50,18 @@ ini_set('display_startup_errors', 1);
                     <th>ดาเมจ</th>
                     <th>ความเร็วรีชาร์จ</th>
                     <th>ความถึกทน</th>
-                    <th>รูป</th>
                     <th>ประเภทตระกูล</th>
                 </Thead>
-            </table>
-
+            
+            <tbody>
             <?php
             
             foreach($result as $plant){
                 ?>
                 <tr>
                     <td> <?= $plant["plant_id"] ?></td>
-                    
+                    <td> <img src="<?= $plant["plant_img"] ?>" 
+                    style="width: 150px"> </td>
                     <td> <?= $plant["plant_name"] ?></td>
                     <td> <?= $plant["plant_world"] ?></td>
                     <td> <?= $plant["plant_food_effect"] ?></td>
@@ -69,7 +69,6 @@ ini_set('display_startup_errors', 1);
                     <td> <?= $plant["damage"] ?></td>
                     <td> <?= $plant["recharge_speed"] ?></td>
                     <td> <?= $plant["toughness"] ?></td>
-                    <td> <?= $plant["plant_img"] ?></td>
                     <td> <?= $plant["types_id"] ?></td>
                     
                 </tr>
@@ -78,6 +77,8 @@ ini_set('display_startup_errors', 1);
             }
 
             ?>
+            </tbody>
+            </table>
 
         </div>
 
