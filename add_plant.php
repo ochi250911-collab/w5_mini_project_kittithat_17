@@ -61,8 +61,8 @@
                 <input type="text" name="family buff">
             </div>
 
-             <?php 
-            include 'action/connect.php';
+        <?php 
+            include 'action/connect_pvz.php';
 
             $sql = "SELECT * FROM types";
             $result = mysqli_query($con, $sql);

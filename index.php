@@ -26,13 +26,13 @@ ini_set('display_startup_errors', 1);
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Plants</title>
     </head>
     <body>
-        
+
         <div>
             <h2>สวัดดีครับ คุณ<?= $_SESSION["fname"] ?></h2>
-
+            <a href="add_plant.php">Add Plant</a>
             <a href="login.php">logout</a>
         </div>
 
