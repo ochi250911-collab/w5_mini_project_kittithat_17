@@ -9,18 +9,18 @@
     $plant_world = $_POST['plant_world'];
     $plant_food_effect = $_POST['plant_food_effect'];
     $sun_cost = $_POST['sun_cost'];
-    $damage = $_POST['damage']
+    $damage = $_POST['damage'];
     $recharge_speed = $_POST['recharge_speed'];
     $toughness = $_POST['toughness'];
     $family_buff = $_POST['family_buff'];
-    $types_id = $_POST['types_id']
+    $types_id = $_POST['types_id'];
 
-    include 'connect_pvz.php'
+    include 'connect_pvz.php';
 
     $sql = "INSERT INTO `plant`
             (`plant_id`, `plant_img`, `plant_name`, `plant_world`, `plant_food_effect`, `sun_cost`, `damage`, `recharge_speed`, `toughness`, `types_id`) 
             VALUES 
-            ('$plant_id','$plant_img','$plant_name','$plant_world','$plant_food_effect','$sun_cost,'$damage','$recharge_speed','$toughness','$types_id')"
+            ('$plant_id','$plant_img','$plant_name','$plant_world','$plant_food_effect','$sun_cost','$damage','$recharge_speed','$toughness','$types_id')";
 
     $result = mysqli_query($con, $sql);
 

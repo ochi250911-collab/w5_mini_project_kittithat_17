@@ -19,7 +19,7 @@ ini_set('display_startup_errors', 1);
         $sql = "SELECT * FROM plant";
 
         $result = mysqli_query($con, $sql);   
-    ?>
+?>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -32,7 +32,10 @@ ini_set('display_startup_errors', 1);
 
         <div>
             <h2>สวัดดีครับ คุณ<?= $_SESSION["fname"] ?></h2>
+            <a href="index.php">Home</a>
             <a href="add_plant.php">Add Plant</a>
+            <a href="manage.php">Manage Plants</a>
+            <a href="plant_type.php">Plant Types</a>
             <a href="login.php">logout</a>
         </div>
 

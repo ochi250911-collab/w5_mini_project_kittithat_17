@@ -20,6 +20,14 @@
     ?>
 
     <div>
+        <a href="index.php">Home</a>
+        <a href="add_plant.php">Add Plant</a>
+        <a href="manage.php">Manage Plants</a>
+        <a href="plant_type.php">Plant Types</a>
+        <a href="login.php">logout</a>
+    </div>
+
+    <div>
          <table border=1>
 
                 <Thead>
@@ -52,7 +60,11 @@
                     <td> <?= $plant["recharge_speed"] ?></td>
                     <td> <?= $plant["toughness"] ?></td>
                     <td> <?= $plant["types_id"] ?></td>
-                    
+                    <td>
+                         <a href="edit_plant.php?plant_id=<?= $plant['plant_id'] ?>">แก้ไข</a>
+                        <a href="action/delete.php?plant_id=<?= $plant['plant_id'] ?>" 
+                        onclick="return confirm('ยืนยันการลบ?')">ลบ</a>
+                    </td>
                 </tr>
                 <?php
 

@@ -8,6 +8,14 @@
 <body>
     
     <div>
+        <a href="index.php">Home</a>
+        <a href="add_plant.php">Add Plant</a>
+        <a href="manage.php">Manage Plants</a>
+        <a href="plant_type.php">Plant Types</a>
+        <a href="login.php">logout</a>
+    </div>
+
+    <div>
 
         <form action="action/insert_pvz.php" method ="post">
             
@@ -58,7 +66,7 @@
 
             <div>
                 <label for="">Family Buff</label>
-                <input type="text" name="family buff">
+                <input type="text" name="family_buff">
             </div>
 
         <?php 
@@ -68,7 +76,7 @@
             $result = mysqli_query($con, $sql);
             ?>
             <label for="">ประเภท</label>
-            <select name="types_id" id=""></select>
+            <select name="types_id" id="">
             <?php
             foreach($result as $types){
                 ?>
@@ -76,7 +84,7 @@
         <?php
     }
     ?>
-
+</select>
 
         <button>บันทึก</button>
         </form>

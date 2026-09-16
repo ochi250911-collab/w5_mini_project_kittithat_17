@@ -12,7 +12,7 @@
 
         include 'action/connect_pvz.php';
 
-        $sql = "SELECT * FROM plant WHERE plant_id = '$id' ";
+        $sql = "SELECT * FROM plant WHERE plant_id = '$plant_id' ";
 
         $result = mysqli_query($con, $sql);
 
@@ -74,7 +74,7 @@
         </div>
 
         <?php
-        include 'action/connect.php';
+        include 'action/connect_pvz.php';
 
         $sql = "SELECT * FROM types";
         $result = mysqli_query($con, $sql);
@@ -85,7 +85,7 @@
                 <?php
                     foreach($result as $type){
                         ?>
-                            <option value="<?= $type["type_id"] ?>"
+                            <option value="<?= $type["types_id"] ?>"
                                 <?= $type["types_id"] == $plant["types_id"] ? "selected" : "" ?>
                                 >
                                 <?= $type["types_name"] ?>
