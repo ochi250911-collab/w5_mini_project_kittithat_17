@@ -35,6 +35,6 @@ $result = mysqli_query($con, $sql);
 if(!$result){
     echo "error";
 }else{
-    header("location: ../manage_plant.php");
+    header("location: ../manage.php");
     exit;
 }

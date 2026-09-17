@@ -1,0 +1,496 @@
+/* ===================================================
+   Plants vs Zombies - Plant Management System
+   สไตล์โทนเขียว/ธรรมชาติ
+   =================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Tahoma', sans-serif;
+    background: linear-gradient(180deg, #cdeb9e 0%, #a8d878 40%, #7fb849 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: #2d3a1a;
+    padding: 20px;
+}
+
+/* ---------- Container กลาง ---------- */
+.container,
+body > div:not(.bg-slide):not(.login-overlay):not(.welcome-modal) {
+    max-width: 1000px;
+    margin: 20px auto;
+    background: #fdfef5;
+    border: 4px solid #5a8f29;
+    border-radius: 16px;
+    padding: 25px 30px;
+    box-shadow: 0 8px 20px rgba(30, 60, 10, 0.25);
+}
+
+/* ---------- หัวข้อ ---------- */
+h1, h2, h3 {
+    color: #3c6b1a;
+    text-shadow: 1px 1px 0 #d4f0a8;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 1.6em;
+    border-bottom: 3px dashed #8fc45a;
+    padding-bottom: 10px;
+}
+
+/* ---------- ลิงก์ทั่วไป ---------- */
+a {
+    color: #3c6b1a;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+a:hover {
+    color: #7fb849;
+    text-decoration: underline;
+}
+
+/* ---------- ปุ่มลิงก์แบบ nav (Add Plant / Logout) ---------- */
+div > a {
+    display: inline-block;
+    background: #7fb849;
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 8px;
+    margin: 5px 6px 15px 0;
+    box-shadow: 0 3px 0 #5a8f29;
+    transition: transform 0.1s ease;
+}
+
+div > a:hover {
+    background: #8fc45a;
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+div > a:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 #5a8f29;
+}
+
+/* ---------- ตาราง ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+table, th, td {
+    border: 1px solid #cde8a8 !important;
+}
+
+thead th {
+    background: #5a8f29;
+    color: #fff;
+    padding: 10px 8px;
+    font-size: 0.95em;
+    text-align: center;
+}
+
+tbody td {
+    padding: 8px 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+tbody tr:nth-child(even) {
+    background: #f2fbe4;
+}
+
+tbody tr:hover {
+    background: #dff0c0;
+}
+
+tbody img {
+    border-radius: 8px;
+    border: 2px solid #8fc45a;
+}
+
+/* ---------- ปุ่มจัดการในตาราง (แก้ไข/ลบ) ---------- */
+td a {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.85em;
+    margin: 2px;
+    color: #fff !important;
+}
+
+td a[href*="edit"] {
+    background: #4a90d9;
+    box-shadow: 0 2px 0 #2f6cb0;
+}
+
+td a[href*="edit"]:hover {
+    background: #5aa0e9;
+    text-decoration: none;
+}
+
+td a[href*="delete"] {
+    background: #e0563f;
+    box-shadow: 0 2px 0 #b8402c;
+}
+
+td a[href*="delete"]:hover {
+    background: #ee6a52;
+    text-decoration: none;
+}
+
+/* ---------- ฟอร์ม (login, add/edit plant) ---------- */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 10px;
+}
+
+form > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+label {
+    font-weight: 700;
+    color: #3c6b1a;
+    font-size: 0.95em;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="file"],
+select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #a8d878;
+    border-radius: 8px;
+    font-size: 1em;
+    background: #fbfff2;
+    color: #2d3a1a;
+    transition: border-color 0.15s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+select:focus {
+    outline: none;
+    border-color: #5a8f29;
+    background: #fff;
+}
+
+select {
+    cursor: pointer;
+}
+
+/* ---------- ปุ่ม submit ---------- */
+button {
+    align-self: flex-start;
+    background: #5a8f29;
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #3c6b1a;
+    transition: transform 0.1s ease;
+    margin-top: 5px;
+}
+
+button:hover {
+    background: #6fa838;
+}
+
+button:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 #3c6b1a;
+}
+
+/* ---------- หน้า Logout (ข้อความกลาง) ---------- */
+.message-text {
+    color: #3c6b1a;
+    margin: 15px 0;
+    font-size: 1.05em;
+}
+
+.btn-link {
+    display: inline-block;
+    background: #7fb849;
+    color: #fff !important;
+    padding: 10px 22px;
+    border-radius: 8px;
+    box-shadow: 0 3px 0 #5a8f29;
+}
+
+.btn-link:hover {
+    text-decoration: none;
+    background: #8fc45a;
+}
+
+/* ---------- Site Header / Logo ---------- */
+.site-header {
+    max-width: 1000px;
+    margin: 0 auto 10px auto;
+    text-align: center;
+    padding: 18px 20px;
+}
+
+.site-title {
+    display: inline-block;
+    font-size: 1.9em;
+    font-weight: 800;
+    color: #fdfef5;
+    text-shadow:
+        2px 2px 0 #3c6b1a,
+        -1px -1px 0 #3c6b1a,
+        1px -1px 0 #3c6b1a,
+        -1px 1px 0 #3c6b1a;
+    letter-spacing: 0.5px;
+    background: #6fa838;
+    padding: 12px 28px;
+    border-radius: 14px;
+    border: 4px solid #3c6b1a;
+    box-shadow: 0 5px 0 #2d5313, 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.site-title span {
+    display: inline-block;
+    font-size: 0.55em;
+    font-weight: 700;
+    color: #fff59d;
+    background: #e0563f;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-left: 8px;
+    vertical-align: middle;
+    text-shadow: none;
+    box-shadow: 0 2px 0 #b8402c;
+}
+
+@media (max-width: 700px) {
+    .site-title {
+        font-size: 1.3em;
+        padding: 10px 18px;
+        display: block;
+    }
+
+    .site-title span {
+        display: block;
+        width: fit-content;
+        margin: 8px auto 0 auto;
+    }
+}
+
+/* ---------- Header ลอยด้านบนหน้า Login ---------- */
+.site-header--login {
+    position: fixed !important;
+    top: 30px !important;
+    left: 50% !important;
+    transform: translateX(-50%);
+    margin: 0 !important;
+    z-index: 10;
+    width: auto;
+}
+
+@media (max-width: 700px) {
+    .site-header--login {
+        top: 15px !important;
+        width: 90%;
+    }
+}
+
+/* ---------- หน้า Login: พื้นหลังรูปภาพสไลด์ ---------- */
+.bg-slide {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    z-index: -2;
+}
+
+body:has(.bg-slide)::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(20, 40, 10, 0.35);
+    z-index: -1;
+}
+
+.login-overlay {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-overlay form {
+    background: rgba(253, 254, 245, 0.95);
+    border: 4px solid #5a8f29;
+    border-radius: 16px;
+    padding: 35px 40px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    max-width: 350px;
+}
+
+.login-overlay form button {
+    align-self: center;
+    width: 100%;
+}
+
+/* ---------- กล่องเตือนตอน login ผิด ---------- */
+.login-error {
+    background: #fdeceb;
+    border: 2px solid #e0563f;
+    color: #b8402c;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-weight: 600;
+    text-align: center;
+    animation: fadeInBox 0.4s ease forwards;
+}
+
+/* ---------- กล่อง Login สำเร็จ ---------- */
+.login-success-box {
+    background: #fdfef5;
+    border: 4px solid #5a8f29;
+    border-radius: 16px;
+    padding: 40px 50px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    max-width: 400px;
+}
+
+.login-success-icon {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+/* ---------- Welcome Modal (index.php หลัง login) ---------- */
+.welcome-modal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: none !important;
+    margin: 0 !important;
+    background: rgba(20, 40, 10, 0.35) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    z-index: 999;
+}
+
+.welcome-modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.welcome-modal-box {
+    background: #fdfef5;
+    border: 4px solid #5a8f29;
+    border-radius: 16px;
+    padding: 30px 50px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #3c6b1a;
+    max-width: 500px;
+    width: auto;
+    transform: translateY(10px);
+    transition: transform 0.5s ease;
+}
+
+.welcome-modal.show .welcome-modal-box {
+    transform: translateY(0);
+}
+
+/* ---------- กล่องเฟดขึ้นมาแบบทั่วไป (เช่นหน้า logout) ---------- */
+@keyframes fadeInBox {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-card {
+    animation: fadeInBox 0.6s ease forwards;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 700px) {
+    .container,
+    body > div:not(.bg-slide):not(.login-overlay):not(.welcome-modal) {
+        padding: 15px;
+        margin: 10px;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tbody tr {
+        margin-bottom: 12px;
+        border: 2px solid #8fc45a !important;
+        border-radius: 10px;
+        padding: 8px;
+    }
+
+    tbody td {
+        text-align: right;
+        padding: 6px 10px;
+        position: relative;
+        padding-left: 45%;
+    }
+
+    tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: 700;
+        color: #3c6b1a;
+        text-align: left;
+    }
+}

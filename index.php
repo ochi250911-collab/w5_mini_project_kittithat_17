@@ -24,11 +24,32 @@ ini_set('display_startup_errors', 1);
     <!DOCTYPE html>
     <html lang="en">
     <head>
+        <link rel="stylesheet" href="style.css">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Plants</title>
+        <title>Home - Plant Management System</title>
     </head>
     <body>
+
+<header class="site-header">
+    <h1 class="site-title">🌻 Plant Management System <span>PvZ Edition</span></h1>
+</header>
+
+<div class="welcome-modal" id="welcomeModal">
+    <div class="welcome-modal-box">
+        ยินดีต้อนรับสู่ Plant Management System: PvZ Edition
+    </div>
+</div>
+
+<script>
+    window.addEventListener("load", () => {
+        const modal = document.getElementById("welcomeModal");
+        // เฟดขึ้นมา
+        setTimeout(() => modal.classList.add("show"), 100);
+        // เฟดหายไปหลัง 3 วิ
+        setTimeout(() => modal.classList.remove("show"), 3000);
+    });
+</script>
 
         <div>
             <h2>สวัดดีครับ คุณ<?= $_SESSION["fname"] ?></h2>
@@ -36,7 +57,7 @@ ini_set('display_startup_errors', 1);
             <a href="add_plant.php">Add Plant</a>
             <a href="manage.php">Manage Plants</a>
             <a href="plant_type.php">Plant Types</a>
-            <a href="login.php">logout</a>
+            <a href="logout.php">logout</a>
         </div>
 
         <div class="container">

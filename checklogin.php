@@ -18,12 +18,12 @@ if( mysqli_num_rows($result) > 0 ){
 
     $user = mysqli_fetch_assoc($result);
     $_SESSION["fname"] = $user["fname"];
-    header("location: index.php");
+    header("location: login_success.php");
     exit;
 
 }else{
     // login ผิด
-    header("location: login.php");
+    header("location: login.php?error=1");
     exit;
 
 }
