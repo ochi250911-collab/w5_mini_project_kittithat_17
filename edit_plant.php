@@ -53,7 +53,20 @@
 
         <div>
              <label for="">โลกของพืช</label>
-            <input type="text" name="plant_world" value="<?= $plant['plant_world']?>">
+            <select name="plant_world" id="">
+                <?php
+                $sql_world = "SELECT * FROM worlds";
+                $result_world = mysqli_query($con, $sql_world);
+                foreach($result_world as $world){
+                    ?>
+                    <option value="<?= $world["world_id"] ?>"
+                        <?= $world["world_id"] == $plant["plant_world"] ? "selected" : "" ?>>
+                        <?= $world["world_name"] ?>
+                    </option>
+                    <?php
+                }
+                ?>
+            </select>
         </div>
 
         <div>
@@ -63,40 +76,33 @@
 
         <div>
              <label for="">ต้นทุนแสง</label>
-            <input type="text" name="sun_cost" value="<?= $plant['sun_cost']?>">
+            <input type="number" name="sun_cost" value="<?= $plant['sun_cost']?>">
         </div>
 
         <div>
              <label for="">ดามเจ</label>
-            <input type="text" name="damage" value="<?= $plant['damage']?>">
+            <input type="number" name="damage" value="<?= $plant['damage']?>">
         </div>
 
         <div>
              <label for="">ความเร็วรีชร์จ</label>
-            <input type="text" name="recharge_speed" value="<?= $plant['recharge_speed']?>">
+            <input type="number" name="recharge_speed" value="<?= $plant['recharge_speed']?>">
         </div>
 
         <div>
              <label for="">ความถึก</label>
-            <input type="text" name="toughness" value="<?= $plant['toughness']?>">
-        </div>
-
-        <div>
-             <label for="">รหัสประเภท</label>
-            <input type="text" name="types_id" value="<?= $plant['types_id']?>">
+            <input type="number" name="toughness" value="<?= $plant['toughness']?>">
         </div>
 
         <?php
-        include 'action/connect_pvz.php';
-
-        $sql = "SELECT * FROM types";
-        $result = mysqli_query($con, $sql);
+        $sql_types = "SELECT * FROM types";
+        $result_types = mysqli_query($con, $sql_types);
         ?>
         <div>
             <label for="">ประเภท</label>
             <select name="types_id" id="">
                 <?php
-                    foreach($result as $type){
+                    foreach($result_types as $type){
                         ?>
                             <option value="<?= $type["types_id"] ?>"
                                 <?= $type["types_id"] == $plant["types_id"] ? "selected" : "" ?>
@@ -115,4 +121,3 @@
     </div>
 </body>
 </html>
-

@@ -16,11 +16,14 @@
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
-
+ 
         include 'action/connect_pvz.php';
-
-        $sql = "SELECT * FROM plant";
-
+ 
+        $sql = "SELECT plant.*, worlds.world_name, types.types_name
+                FROM plant
+                LEFT JOIN worlds ON plant.plant_world = worlds.world_id
+                LEFT JOIN types ON plant.types_id = types.types_id";
+ 
         $result = mysqli_query($con, $sql);
     ?>
 
@@ -58,7 +61,7 @@
                     <td> <img src="<?= $plant["plant_img"] ?>" 
                     style="width: 150px"> </td>
                     <td> <?= $plant["plant_name"] ?></td>
-                    <td> <?= $plant["plant_world"] ?></td>
+                    <td> <?= $plant["world_name"] ?></td>
                     <td> <?= $plant["plant_food_effect"] ?></td>
                     <td> <?= $plant["sun_cost"] ?></td>
                     <td> <?= $plant["damage"] ?></td>

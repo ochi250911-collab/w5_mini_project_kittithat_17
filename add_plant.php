@@ -22,6 +22,10 @@
 
     <div>
 
+        <?php 
+            include 'action/connect_pvz.php';
+        ?>
+
         <form action="action/insert_pvz.php" method ="post">
             
             <div>
@@ -41,7 +45,17 @@
 
             <div>
                 <label for="">Plant World</label>
-                <input type="text" name="plant_world">
+                <select name="plant_world" id="">
+                    <?php
+                    $sql_world = "SELECT * FROM worlds";
+                    $result_world = mysqli_query($con, $sql_world);
+                    foreach($result_world as $world){
+                        ?>
+                        <option value="<?= $world["world_id"] ?>"><?= $world["world_name"] ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
             </div>
 
             <div>
@@ -51,22 +65,22 @@
 
             <div>
                 <label for="">Sun Cost</label>
-                <input type="text" name="sun_cost">
+                <input type="number" name="sun_cost">
             </div>
 
             <div>
                 <label for="">Damage</label>
-                <input type="text" name="damage">
+                <input type="number" name="damage">
             </div>
 
             <div>
                 <label for="">Recharge Speed</label>
-                <input type="text" name="recharge_speed">
+                <input type="number" name="recharge_speed">
             </div>
 
             <div>
                 <label for="">Toughness</label>
-                <input type="text" name="toughness">
+                <input type="number" name="toughness">
             </div>
 
             <div>
@@ -74,29 +88,25 @@
                 <input type="text" name="family_buff">
             </div>
 
-        <?php 
-            include 'action/connect_pvz.php';
+            <div>
+                <label for="">ประเภท</label>
+                <select name="types_id" id="">
+                    <?php
+                    $sql_types = "SELECT * FROM types";
+                    $result_types = mysqli_query($con, $sql_types);
+                    foreach($result_types as $types){
+                        ?>
+                        <option value="<?= $types["types_id"] ?>"><?= $types["types_name"] ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+            </div>
 
-            $sql = "SELECT * FROM types";
-            $result = mysqli_query($con, $sql);
-            ?>
-            <label for="">ประเภท</label>
-            <select name="types_id" id="">
-            <?php
-            foreach($result as $types){
-                ?>
-                <option value="<?= $types["types_id"] ?>"><?= $types["types_name"] ?>></option>
-        <?php
-    }
-    ?>
-</select>
-
-        <button>บันทึก</button>
+            <button>บันทึก</button>
         </form>
 
     </div>
-
-   
 
 </body>
 </html>
